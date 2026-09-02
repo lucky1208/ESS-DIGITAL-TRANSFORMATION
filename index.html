@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>储能前端工程交付数字化全景解析 · Open-ESS-Agent</title>
+<meta name="description" content="从项目初勘到现场调试，用AI智能体与垂直知识库重构储能工程交付全链路，突破行业人力产能天花板。">
+<style>
+  :root{
+    --navy:#0B1120;
+    --navy-2:#0F192E;
+    --ink:#0F172A;
+    --ink-2:#1E293B;
+    --muted:#64748B;
+    --muted-dark:#94A3B8;
+    --cyan:#22D3EE;
+    --cyan-deep:#0E7490;
+    --blue:#2563EB;
+    --blue-deep:#1D4ED8;
+    --bg-light:#FFFFFF;
+    --bg-gray:#F5F7FA;
+    --line:#E2E8F0;
+    --font:"PingFang SC","Microsoft YaHei","HarmonyOS Sans SC","Noto Sans SC",system-ui,-apple-system,"Segoe UI",sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--font);color:var(--ink);background:var(--bg-light);-webkit-font-smoothing:antialiased;line-height:1.6}
+  .container{max-width:1080px;margin:0 auto;padding:0 24px}
+  section{padding:88px 0}
+  @media(max-width:640px){section{padding:64px 0}}
+
+  /* ---------- eyebrow ---------- */
+  .eyebrow{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:600;letter-spacing:.18em;margin-bottom:16px;text-transform:uppercase}
+  .eyebrow::before{content:"";width:28px;height:2px;flex:none}
+  .eyebrow.blue{color:var(--blue)} .eyebrow.blue::before{background:var(--blue)}
+  .eyebrow.cyan{color:var(--cyan)} .eyebrow.cyan::before{background:var(--cyan)}
+  .eyebrow.dark{color:var(--ink-2)} .eyebrow.dark::before{background:var(--blue)}
+  h2{font-size:clamp(26px,4vw,38px);font-weight:800;letter-spacing:.02em;line-height:1.3;margin-bottom:16px}
+  .lead{font-size:15px;color:var(--muted);max-width:680px;margin-bottom:48px}
+
+  /* ---------- reveal ---------- */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ================= HERO ================= */
+  .hero{background:radial-gradient(1200px 600px at 70% -10%,rgba(34,211,238,.12),transparent 60%),radial-gradient(900px 500px at 10% 110%,rgba(37,99,235,.14),transparent 60%),var(--navy);color:#fff;padding:110px 0 90px;position:relative;overflow:hidden}
+  .hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(148,163,184,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(148,163,184,.05) 1px,transparent 1px);background-size:44px 44px;pointer-events:none}
+  .hero .container{position:relative}
+  .hero-tag{display:inline-block;border:1px solid rgba(34,211,238,.55);color:var(--cyan);font-size:12px;letter-spacing:.22em;padding:7px 16px;border-radius:4px;margin-bottom:28px;font-weight:500}
+  .hero h1{font-size:clamp(30px,5.4vw,52px);font-weight:800;line-height:1.28;letter-spacing:.02em;margin-bottom:22px}
+  .hero h1 em{font-style:normal;color:var(--cyan)}
+  .hero-sub{color:var(--muted-dark);font-size:15px;max-width:560px;margin-bottom:52px}
+  .stat-grid{display:grid;grid-template-columns:1fr 1fr;border:1px solid rgba(148,163,184,.34);border-radius:14px;overflow:hidden;max-width:640px;background:rgba(255,255,255,.03)}
+  .stat{padding:26px 28px;position:relative}
+  .stat:nth-child(1),.stat:nth-child(2){border-bottom:1px solid rgba(148,163,184,.26)}
+  .stat:nth-child(odd){border-right:1px solid rgba(148,163,184,.26)}
+  .stat b{display:block;font-size:clamp(26px,3.4vw,34px);font-weight:800;color:var(--cyan);letter-spacing:.01em;margin-bottom:6px;font-family:"DIN Alternate","Bahnschrift",var(--font)}
+  .stat span{font-size:13px;color:var(--muted-dark)}
+  .scroll-hint{margin-top:56px;display:flex;flex-direction:column;align-items:flex-start;gap:10px;color:#64748B;font-size:11px;letter-spacing:.3em}
+  .scroll-hint i{width:2px;height:34px;background:linear-gradient(var(--cyan),transparent);display:block;animation:drip 1.8s ease-in-out infinite}
+  @keyframes drip{0%{transform:scaleY(0);transform-origin:top}45%{transform:scaleY(1);transform-origin:top}55%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+  /* ================= DEFINITION ================= */
+  .def-cards{display:grid;gap:22px}
+  .def-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:30px 30px 30px 34px;position:relative;box-shadow:0 6px 24px rgba(15,23,42,.05);overflow:hidden}
+  .def-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px}
+  .def-card.navy::before{background:var(--ink-2)}
+  .def-card.cy::before{background:var(--cyan)}
+  .def-card .en{font-size:12px;letter-spacing:.2em;font-weight:700;margin-bottom:8px}
+  .def-card.navy .en{color:var(--blue-deep)} .def-card.cy .en{color:var(--cyan-deep)}
+  .def-card h3{font-size:20px;font-weight:800;margin-bottom:10px;color:var(--ink)}
+  .def-card p{font-size:14px;color:var(--muted)}
+
+  /* ================= PAIN POINTS ================= */
+  .pain{background:var(--bg-gray)}
+  .pain-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  @media(max-width:760px){.pain-grid{grid-template-columns:1fr}}
+  .pain-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:28px;position:relative;overflow:hidden}
+  .pain-card .num{position:absolute;right:18px;top:2px;font-size:74px;font-weight:900;color:#EDF2F7;line-height:1;letter-spacing:-.02em;user-select:none}
+  .pain-card .icon{width:44px;height:44px;border-radius:10px;background:#EFF6FF;display:flex;align-items:center;justify-content:center;margin-bottom:16px;color:var(--blue)}
+  .pain-card h3{font-size:18px;font-weight:800;margin-bottom:10px;position:relative}
+  .pain-card p{font-size:13.5px;color:var(--muted);margin-bottom:16px;position:relative}
+  .pill{display:inline-block;background:#EFF6FF;color:var(--blue-deep);font-size:12px;font-weight:600;padding:5px 12px;border-radius:999px}
+  .pain-card.opp{background:linear-gradient(160deg,#F0FDFF,#fff)}
+  .pain-card.opp .num{color:#D5F6FC}
+  .pain-card.opp .icon{background:#ECFEFF;color:var(--cyan-deep)}
+  .pain-card.opp .pill{background:#CFFAFE;color:var(--cyan-deep)}
+
+  /* ================= WORKFLOW ================= */
+  .flow{background:radial-gradient(1000px 500px at 85% 0%,rgba(34,211,238,.08),transparent 55%),var(--navy);color:#fff}
+  .flow .lead{color:var(--muted-dark)}
+  .timeline{position:relative;padding-left:56px}
+  .timeline::before{content:"";position:absolute;left:21px;top:24px;bottom:24px;width:2px;background:linear-gradient(rgba(34,211,238,.7),rgba(34,211,238,.15))}
+  .step{position:relative;margin-bottom:34px}
+  .step:last-child{margin-bottom:0}
+  .step-dot{position:absolute;left:-56px;top:2px;width:44px;height:44px;border-radius:50%;border:1.5px solid rgba(34,211,238,.75);background:var(--navy);color:var(--cyan);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;box-shadow:0 0 0 6px rgba(34,211,238,.07)}
+  .step-card{background:rgba(255,255,255,.035);border:1px solid rgba(148,163,184,.16);border-radius:14px;padding:26px 28px}
+  .step-card .kicker{color:var(--cyan);font-size:12px;letter-spacing:.18em;font-weight:700;margin-bottom:8px}
+  .step-card h3{font-size:19px;font-weight:800;margin-bottom:10px}
+  .step-card p{font-size:13.5px;color:var(--muted-dark);margin-bottom:16px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{border:1px solid rgba(34,211,238,.5);color:var(--cyan);font-size:12px;padding:5px 12px;border-radius:6px;letter-spacing:.02em}
+
+  /* ================= COMPETITIVE ================= */
+  .comp-table{width:100%;border-collapse:collapse;border-radius:14px;overflow:hidden;box-shadow:0 8px 28px rgba(15,23,42,.07);font-size:14px}
+  .comp-table thead th{background:var(--navy);color:#fff;font-weight:700;padding:15px 20px;text-align:left;font-size:13.5px;letter-spacing:.06em}
+  .comp-table td{padding:18px 20px;border-bottom:1px solid var(--line);vertical-align:middle;background:#fff}
+  .comp-table tr:last-child td{border-bottom:none}
+  .comp-table .who b{display:block;font-size:14.5px;color:var(--ink)}
+  .comp-table .who span{font-size:12px;color:var(--muted)}
+  .comp-table .cap{color:#475569}
+  .comp-table tr.hl td{background:#EFF6FF}
+  .comp-table tr.hl .who b{color:var(--blue-deep)}
+  .comp-table tr.hl .cap{color:var(--blue-deep);font-weight:600}
+  @media(max-width:640px){
+    .comp-table thead{display:none}
+    .comp-table,.comp-table tbody,.comp-table tr,.comp-table td{display:block;width:100%}
+    .comp-table{background:transparent;box-shadow:none;font-size:14px}
+    .comp-table tr{background:#fff;border:1px solid var(--line);border-radius:12px;margin-bottom:14px;padding:8px 0;box-shadow:0 4px 16px rgba(15,23,42,.05)}
+    .comp-table td{border-bottom:none;padding:8px 18px}
+    .comp-table tr.hl{background:#EFF6FF;border-color:#BFDBFE}
+  }
+
+  /* ================= BUSINESS ================= */
+  .biz{background:var(--bg-gray)}
+  .biz-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-bottom:26px}
+  @media(max-width:760px){.biz-grid{grid-template-columns:1fr}}
+  .biz-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:28px;box-shadow:0 6px 24px rgba(15,23,42,.05)}
+  .biz-card .icon{width:46px;height:46px;border-radius:11px;background:linear-gradient(140deg,var(--blue),#3B82F6);color:#fff;display:flex;align-items:center;justify-content:center;margin-bottom:16px;box-shadow:0 6px 16px rgba(37,99,235,.28)}
+  .biz-card .en{font-size:11.5px;letter-spacing:.2em;font-weight:700;color:var(--blue);margin-bottom:6px}
+  .biz-card h3{font-size:18px;font-weight:800;margin-bottom:10px}
+  .biz-card p{font-size:13.5px;color:var(--muted)}
+  .roadmap{background:var(--navy);border-radius:16px;padding:38px 34px;color:#fff}
+  .roadmap .kicker{color:var(--cyan);font-size:12.5px;letter-spacing:.22em;font-weight:700;margin-bottom:24px}
+  .road-flow{display:flex;align-items:stretch;gap:14px;flex-wrap:wrap}
+  .road-node{flex:1;min-width:150px;border:1px solid rgba(34,211,238,.5);border-radius:10px;padding:16px 14px;text-align:center;font-size:14px;font-weight:600;color:#fff;background:rgba(34,211,238,.05)}
+  .road-arrow{display:flex;align-items:center;color:var(--cyan);font-size:20px;flex:none}
+  @media(max-width:760px){.road-flow{flex-direction:column}.road-arrow{transform:rotate(90deg);justify-content:center}}
+
+  /* ================= CORE VALUE ================= */
+  .value-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  @media(max-width:860px){.value-grid{grid-template-columns:1fr}}
+  .value-card{border:1px solid var(--line);border-radius:14px;padding:34px 28px;text-align:center;background:#fff;box-shadow:0 6px 24px rgba(15,23,42,.05)}
+  .value-card b{display:block;font-size:clamp(38px,4.6vw,48px);font-weight:900;color:var(--blue);letter-spacing:-.01em;margin-bottom:6px;font-family:"DIN Alternate","Bahnschrift",var(--font)}
+  .value-card h3{font-size:16.5px;font-weight:800;margin-bottom:10px}
+  .value-card p{font-size:13px;color:var(--muted)}
+
+  /* ================= FOOTER ================= */
+  footer{background:var(--navy);color:#fff;padding:72px 0;text-align:center;position:relative;overflow:hidden}
+  footer::before{content:"";position:absolute;inset:0;background:radial-gradient(700px 300px at 50% 120%,rgba(34,211,238,.14),transparent 65%)}
+  footer .container{position:relative}
+  footer .brand{font-size:clamp(22px,3.4vw,30px);font-weight:900;letter-spacing:.3em;margin-bottom:14px;color:#fff}
+  footer .brand em{font-style:normal;color:var(--cyan)}
+  footer p{color:var(--muted-dark);font-size:13.5px}
+
+  /* ================= FAB ================= */
+  .fab{position:fixed;right:22px;bottom:26px;width:46px;height:46px;border-radius:50%;background:rgba(15,23,42,.82);color:#fff;border:1px solid rgba(148,163,184,.3);display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .3s;z-index:99;backdrop-filter:blur(6px)}
+  .fab.show{opacity:1;pointer-events:auto}
+  .fab:hover{background:rgba(34,211,238,.9)}
+</style>
+</head>
+<body>
+
+<!-- ================= HERO ================= -->
+<header class="hero">
+  <div class="container">
+    <div class="reveal">
+      <span class="hero-tag">ENERGY STORAGE · DIGITAL TRANSFORMATION</span>
+      <h1>储能前端工程交付<br><em>数字化</em>全景解析</h1>
+      <p class="hero-sub">从项目初勘到现场调试，用AI智能体与垂直知识库重构储能工程交付全链路，突破行业人力产能天花板。</p>
+    </div>
+    <div class="stat-grid reveal">
+      <div class="stat"><b>7-15天</b><span>传统方案设计周期</span></div>
+      <div class="stat"><b>小时级</b><span>AI方案生成速度</span></div>
+      <div class="stat"><b>60%+</b><span>交付效率提升</span></div>
+      <div class="stat"><b>30%</b><span>项目返工率</span></div>
+    </div>
+    <div class="scroll-hint reveal">SCROLL<i></i></div>
+  </div>
+</header>
+
+<!-- ================= DEFINITION ================= -->
+<section id="definition">
+  <div class="container">
+    <div class="reveal">
+      <div class="eyebrow blue">DEFINITION · 概念定义</div>
+      <h2>什么是储能前端工程交付数字化</h2>
+      <p class="lead">前端工程交付是储能项目正式开工前的全链路环节，数字化则将依赖资深工程师经验的线下工作，转为线上可复用、自动校验、一键输出商用成果的工作流。</p>
+    </div>
+    <div class="def-cards">
+      <div class="def-card navy reveal">
+        <div class="en">FRONT-END DELIVERY</div>
+        <h3>前端工程交付</h3>
+        <p>储能项目正式开工之前的全链路环节，包含项目初勘、负荷测算、方案配置、电气设计、收益测算、图纸输出、BOM清单、设备选型适配、并网报审资料、现场自适应调试。是项目从线索到落地的核心生产力环节。</p>
+      </div>
+      <div class="def-card cy reveal">
+        <div class="en">DIGITALIZATION</div>
+        <h3>交付数字化</h3>
+        <p>依托垂直知识库、AI智能体、标准化引擎，把原先依赖资深工程师经验、线下反复沟通的工作，转为线上可复用、自动校验、可一键输出商用成果的工作流。实现储能项目从线索立项到方案定稿、进场调试的全流程提效降本。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PAIN POINTS ================= -->
+<section class="pain" id="pain">
+  <div class="container">
+    <div class="reveal">
+      <div class="eyebrow dark">PAIN POINTS · 行业痛点</div>
+      <h2>传统交付模式的五大瓶颈</h2>
+      <p class="lead">储能行业爆发式增长，但前端交付仍高度依赖人工，产能、质量、成本三重压力并存。</p>
+    </div>
+    <div class="pain-grid">
+      <div class="pain-card reveal">
+        <div class="num">01</div>
+        <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5"/></svg></div>
+        <h3>人力产能瓶颈</h3>
+        <p>成熟储能工程师培养周期6-12个月，项目爆发式增长导致人手严重不足。单个工商业储能人工方案周期长达7-15天，产能天花板明显。</p>
+        <span class="pill">培养周期 6-12个月</span>
+      </div>
+      <div class="pain-card reveal">
+        <div class="num">02</div>
+        <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2.5 20h19L12 3z"/><path d="M12 10v4.5"/><circle cx="12" cy="17" r=".6" fill="currentColor"/></svg></div>
+        <h3>人为失误率高</h3>
+        <p>依靠工程师个人经验，容量配置错配、PCS-BMS参数不匹配、方案不符合当地并网规范，约30%项目出现后期返工、方案反复修改。</p>
+        <span class="pill">返工率约 30%</span>
+      </div>
+      <div class="pain-card reveal">
+        <div class="num">03</div>
+        <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="7" rx="1.5"/><rect x="3" y="13" width="18" height="7" rx="1.5"/><circle cx="7" cy="7.5" r=".6" fill="currentColor"/><circle cx="7" cy="16.5" r=".6" fill="currentColor"/><path d="M11 7.5h6M11 16.5h6"/></svg></div>
+        <h3>设备生态孤岛</h3>
+        <p>各大电池、PCS厂商协议不互通，不同品牌设备联调难度大，进场调试耗时长，极易延期交付。跨品牌适配成为工程交付的隐形门槛。</p>
+        <span class="pill">协议不互通</span>
+      </div>
+      <div class="pain-card reveal">
+        <div class="num">04</div>
+        <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2.5h8L19 7.5V21.5H6z"/><path d="M14 2.5v5h5"/><path d="M9 12h6M9 15.5h6"/></svg></div>
+        <h3>经验资产流失</h3>
+        <p>优质方案、项目踩坑案例分散在工程师个人手里，人员流动直接带走技术能力。企业无法将个体经验沉淀为组织资产，知识传承断裂。</p>
+        <span class="pill">知识无法沉淀</span>
+      </div>
+      <div class="pain-card reveal">
+        <div class="num">05</div>
+        <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.8v3M12 18.2v3M2.8 12h3M18.2 12h3M5.5 5.5l2.1 2.1M16.4 16.4l2.1 2.1M18.5 5.5l-2.1 2.1M7.6 16.4l-2.1 2.1"/></svg></div>
+        <h3>多软件割裂</h3>
+        <p>负荷分析、电气画图、经济性测算、并网报审分别使用多款独立工具，数据不能互通。每一次参数改动全部表格需要手动重算，效率低下且易出错。</p>
+        <span class="pill">数据不互通</span>
+      </div>
+      <div class="pain-card opp reveal">
+        <div class="num">06</div>
+        <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 9 5-9 5-9-5 9-5z"/><path d="m3 13 9 5 9-5"/><path d="m3 17.5 9 5 9-5" opacity=".45"/></svg></div>
+        <h3>赛道空白</h3>
+        <p>当前储能数字化产品大多停留在ERP台账、项目管理、电站运维监控。行业尚无一款中立、面向前端交付、能直接生成可商用工程成果的生成式AI平台。</p>
+        <span class="pill">蓝海赛道</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WORKFLOW ================= -->
+<section class="flow" id="workflow">
+  <div class="container">
+    <div class="reveal">
+      <div class="eyebrow cyan">WORKFLOW · 数字化全链路</div>
+      <h2>从线索到调试的六步闭环</h2>
+      <p class="lead">覆盖储能项目前端交付全流程，每一步都由AI智能体驱动，输出可商用工程成果。</p>
+    </div>
+    <div class="timeline">
+      <div class="step reveal">
+        <div class="step-dot">1</div>
+        <div class="step-card">
+          <div class="kicker">STEP 01 · 立项勘测</div>
+          <h3>智能初勘与数据采集</h3>
+          <p>线上填报厂区变压器容量、历史用电曲线、电价、场地条件；系统自动抓取当地并网政策、峰谷电价、补贴规则，替代人工线下踏勘与资料搜集。</p>
+          <div class="chips"><span class="chip">用电曲线分析</span><span class="chip">并网政策抓取</span><span class="chip">场地条件评估</span></div>
+        </div>
+      </div>
+      <div class="step reveal">
+        <div class="step-dot">2</div>
+        <div class="step-card">
+          <div class="kicker">STEP 02 · 方案生成</div>
+          <h3>AI智能方案配置</h3>
+          <p>AI自动做多组容量配比，输出最优功率/容量方案，同步完成动态IRR收益测算，纳入电池衰减、运维成本，收益测算更贴合真实工况。</p>
+          <div class="chips"><span class="chip">多方案比选</span><span class="chip">IRR动态测算</span><span class="chip">容量优化</span></div>
+        </div>
+      </div>
+      <div class="step reveal">
+        <div class="step-dot">3</div>
+        <div class="step-card">
+          <div class="kicker">STEP 03 · 电气设计</div>
+          <h3>储能专项电气设计</h3>
+          <p>垂直储能规范库，完成一次二次电气原理图、布局图、防雷消防设计；自动合规校验，规避并网报审驳回风险。储能有独立的防孤岛、涉网、消防专项规范。</p>
+          <div class="chips"><span class="chip">一次/二次原理图</span><span class="chip">防雷消防设计</span><span class="chip">合规自动校验</span></div>
+        </div>
+      </div>
+      <div class="step reveal">
+        <div class="step-dot">4</div>
+        <div class="step-card">
+          <div class="kicker">STEP 04 · 成果输出</div>
+          <h3>全套交付物一键生成</h3>
+          <p>一键导出施工图纸、BOM清单、造价概算、并网申报材料、技术规范书。所有文档数据同源，参数修改自动联动更新，告别多软件手动重算。</p>
+          <div class="chips"><span class="chip">施工图纸</span><span class="chip">BOM清单</span><span class="chip">并网申报材料</span><span class="chip">造价概算</span></div>
+        </div>
+      </div>
+      <div class="step reveal">
+        <div class="step-dot">5</div>
+        <div class="step-card">
+          <div class="kicker">STEP 05 · 设备适配</div>
+          <h3>跨品牌设备自适应</h3>
+          <p>协议自适应引擎，自动生成不同厂商PCS/BMS初始配置参数，解决多品牌设备现场调试难题，实现免现场反复调试，大幅压缩进场工期。</p>
+          <div class="chips"><span class="chip">PCS协议适配</span><span class="chip">BMS参数配置</span><span class="chip">多品牌兼容</span></div>
+        </div>
+      </div>
+      <div class="step reveal">
+        <div class="step-dot">6</div>
+        <div class="step-card">
+          <div class="kicker">STEP 06 · 档案沉淀</div>
+          <h3>全生命周期数据归档</h3>
+          <p>所有方案、图纸、参数线上留痕，版本可追溯；前端交付数据无缝向后端运维平台打通，将个体工程师经验沉淀为企业组织资产。</p>
+          <div class="chips"><span class="chip">版本追溯</span><span class="chip">经验资产化</span><span class="chip">前后端数据打通</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= COMPETITIVE ================= -->
+<section id="landscape">
+  <div class="container">
+    <div class="reveal">
+      <div class="eyebrow blue">COMPETITIVE LANDSCAPE · 竞品格局</div>
+      <h2>四类玩家能力对比</h2>
+      <p class="lead">当前市场参与者各有侧重，但完整覆盖前端工程交付全链路的中立AI平台仍属空白。</p>
+    </div>
+    <div class="reveal">
+      <table class="comp-table">
+        <thead><tr><th>玩家类型</th><th>核心能力</th></tr></thead>
+        <tbody>
+          <tr><td class="who"><b>综合仿真软件</b><span>PVsyst类</span></td><td class="cap">仿真能力强，偏收益测算，操作门槛高</td></tr>
+          <tr><td class="who"><b>光储一体化平台</b><span>鹧鸪云等</span></td><td class="cap">光伏能力成熟，储能以容量仿真为主</td></tr>
+          <tr><td class="who"><b>硬件厂商自研系统</b><span>宁德/阳光等</span></td><td class="cap">深度适配自家设备，生态封闭</td></tr>
+          <tr class="hl"><td class="who"><b>中立全链路AI平台</b><span>Open-ESS-Agent</span></td><td class="cap">完整覆盖方案→图纸→BOM→参数调试闭环</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BUSINESS ================= -->
+<section class="biz" id="business">
+  <div class="container">
+    <div class="reveal">
+      <div class="eyebrow blue">BUSINESS MODEL · 商业模式</div>
+      <h2>轻资产多元复合变现</h2>
+      <p class="lead">四条收入曲线并行，兼顾短期现金流与中长期规模化增长，目标客户覆盖储能全产业链。</p>
+    </div>
+    <div class="biz-grid">
+      <div class="biz-card reveal">
+        <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17.5 8.5 7l3.5 6 3.5-6L20 17.5z"/><path d="M5.5 20.5h13"/></svg></div>
+        <div class="en">CORE REVENUE</div>
+        <h3>SaaS年度账号订阅</h3>
+        <p>面向中小型EPC、储能集成商，按账号年费收费。高频复购，适合规模化放量，是核心主力收入来源。</p>
+      </div>
+      <div class="biz-card reveal">
+        <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V9M10 20V4M16 20v-7M21 20H3"/></svg></div>
+        <div class="en">PROJECT-BASED</div>
+        <h3>项目按量计费</h3>
+        <p>针对大型项目，按储能项目容量收取单次方案、图纸、BOM全套工程服务费用，适配大客户非标需求。</p>
+      </div>
+      <div class="biz-card reveal">
+        <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m8 6-5.5 6L8 18M16 6l5.5 6L16 18"/><path d="m13.5 4-3 16"/></svg></div>
+        <div class="en">API LICENSING</div>
+        <h3>SDK接口授权</h3>
+        <p>面向储能硬件厂商、能源平台，开放协议适配、AI方案引擎API授权，拓展B端生态合作收入。</p>
+      </div>
+      <div class="biz-card reveal">
+        <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 8v8M8 12h8"/></svg></div>
+        <div class="en">VALUE-ADDED</div>
+        <h3>增值服务</h3>
+        <p>方案专家复审、现场调试技术指导、行业知识库更新服务，提升客户粘性与单客价值。</p>
+      </div>
+    </div>
+    <div class="roadmap reveal">
+      <div class="kicker">落地路径</div>
+      <div class="road-flow">
+        <div class="road-node">标杆试点先行</div>
+        <div class="road-arrow">→</div>
+        <div class="road-node">打造行业样板</div>
+        <div class="road-arrow">→</div>
+        <div class="road-node">展会/园区/渠道拓展</div>
+        <div class="road-arrow">→</div>
+        <div class="road-node">规模化放量</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CORE VALUE ================= -->
+<section id="value">
+  <div class="container">
+    <div class="reveal">
+      <div class="eyebrow blue">CORE VALUE · 核心收益</div>
+      <h2>数字化交付的量化价值</h2>
+      <p class="lead">从效率、质量、成本三个维度，为储能工程企业带来可衡量的业务提升。</p>
+    </div>
+    <div class="value-grid">
+      <div class="value-card reveal"><b>60%+</b><h3>交付效率提升</h3><p>人工方案7-15天缩短至AI小时级完成，项目交付周期大幅压缩</p></div>
+      <div class="value-card reveal"><b>90%</b><h3>调试工作量下降</h3><p>跨品牌协议自适应，现场调试工作量下降90%，大幅压缩进场工期</p></div>
+      <div class="value-card reveal"><b>100%</b><h3>经验资产沉淀</h3><p>企业不再完全依赖少数资深工程师，个体经验转化为平台组织资产</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="container">
+    <div class="brand">OPEN-<em>ESS</em>-AGENT</div>
+    <p>储能前端工程交付数字化 · 让每一个储能项目高效落地</p>
+  </div>
+</footer>
+
+<button class="fab" id="toTop" aria-label="回到顶部">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 14 7-7 7 7"/></svg>
+</button>
+
+<script>
+  const io = new IntersectionObserver((es) => {
+    es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  const fab = document.getElementById('toTop');
+  addEventListener('scroll', () => fab.classList.toggle('show', scrollY > 600), { passive: true });
+  fab.addEventListener('click', () => scrollTo({ top: 0, behavior: 'smooth' }));
+</script>
+</body>
+</html>
+
