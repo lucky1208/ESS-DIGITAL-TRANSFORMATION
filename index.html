@@ -398,6 +398,9 @@
   .field.error input,.field.error select,.field.error textarea{border-color:#DC2626}
   .field.error .err{display:block}
   .form-note{font-size:11.5px;color:var(--muted-dark);margin-top:14px}
+  .form-status{display:none;margin-top:12px;font-size:12.5px;color:#DC2626;line-height:1.6}
+  .form-status.show{display:block}
+  .form-status a{color:var(--blue-deep);font-weight:700;text-decoration:underline}
   .form-success{display:none;text-align:center;padding:46px 20px}
   .form-success.show{display:block}
   .form-success .ok{width:64px;height:64px;border-radius:50%;background:#ECFDF5;color:#059669;display:flex;align-items:center;justify-content:center;margin:0 auto 18px}
@@ -1792,7 +1795,8 @@
               <textarea id="cDemand" placeholder="请简要描述项目类型、装机规模或合作诉求"></textarea>
               <em class="err"></em>
             </div>
-            <button type="submit" class="btn btn-blue" style="width:100%">提交咨询</button>
+            <button type="submit" class="btn btn-blue" id="contactSubmit" style="width:100%">提交咨询</button>
+            <p class="form-status" id="formStatus"></p>
             <p class="form-note">提交即表示同意我们通过所留联系方式与你沟通，我们不会向第三方泄露你的信息。</p>
           </form>
           <div class="form-success" id="formSuccess">
@@ -1808,6 +1812,7 @@
             <div>
               <h4>商务合作</h4>
               <p><a href="mailto:bd@essagent.cn">bd@essagent.cn</a></p>
+              <p>电话：<a href="tel:15026953905">15026953905</a></p>
             </div>
           </div>
           <div class="contact-card">
@@ -2238,6 +2243,8 @@
   const contactForm = document.getElementById('contactForm');
   const formSuccess = document.getElementById('formSuccess');
   const formAgain = document.getElementById('formAgain');
+  const contactSubmit = document.getElementById('contactSubmit');
+  const formStatus = document.getElementById('formStatus');
 
   function setError(id, msg){
     const input = document.getElementById(id);
@@ -2254,9 +2261,11 @@
     });
   }
 
-  contactForm.addEventListener('submit', e => {
+  contactForm.addEventListener('submit', async e => {
     e.preventDefault();
     clearErrors();
+    formStatus.className = 'form-status';
+    formStatus.textContent = '';
     const name = document.getElementById('cName').value.trim();
     const company = document.getElementById('cCompany').value.trim();
     const phone = document.getElementById('cPhone').value.trim();
@@ -2272,8 +2281,37 @@
 
     if (!ok) return;
 
-    contactForm.style.display = 'none';
-    formSuccess.classList.add('show');
+    const originalText = contactSubmit.textContent;
+    contactSubmit.disabled = true;
+    contactSubmit.textContent = '正在提交...';
+
+    try {
+      const res = await fetch('https://formsubmit.co/ajax/luly101@163.com', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+        body: JSON.stringify({
+          '姓名': name,
+          '公司': company,
+          '手机': phone,
+          '咨询类型': type,
+          '需求描述': demand,
+          '_subject': '量垣科技官网合作咨询 · ' + company + ' · ' + name,
+          '_template': 'table',
+          '_captcha': 'false'
+        })
+      });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const data = await res.json().catch(() => ({}));
+      if (String(data.success) === 'false') throw new Error(data.message || '提交失败');
+      contactForm.style.display = 'none';
+      formSuccess.classList.add('show');
+    } catch (err) {
+      formStatus.innerHTML = '提交失败，请稍后重试，或直接发送邮件至 <a href="mailto:luly101@163.com">luly101@163.com</a>。';
+      formStatus.className = 'form-status show';
+    } finally {
+      contactSubmit.disabled = false;
+      contactSubmit.textContent = originalText;
+    }
   });
 
   formAgain.addEventListener('click', () => {
