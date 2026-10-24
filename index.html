@@ -410,6 +410,97 @@
   .contact-card p{font-size:13px;color:var(--muted);word-break:break-all}
   .contact-card a{color:var(--blue-deep)}
 
+  /* ---------- COMPARISON TABLE ---------- */
+  .cmp-toolbar{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:16px}
+  .cmp-tabs{display:flex;gap:8px;flex-wrap:wrap}
+  .cmp-tab{border:1px solid var(--line);background:#fff;color:var(--muted);padding:8px 16px;border-radius:999px;font-size:13px;font-weight:600;cursor:pointer;transition:.2s}
+  .cmp-tab:hover{border-color:#BFDBFE;color:var(--blue)}
+  .cmp-tab.active{background:var(--navy);border-color:var(--navy);color:#fff}
+  .cmp-count{font-size:12.5px;color:var(--muted)}
+  .cmp-wrap{border:1px solid var(--line);border-radius:14px;overflow:auto;box-shadow:0 8px 28px rgba(15,23,42,.06);background:#fff}
+  .cmp-table{width:100%;min-width:1040px;border-collapse:separate;border-spacing:0;font-size:13px}
+  .cmp-table th{background:var(--navy);color:#fff;text-align:left;padding:14px 16px;font-size:12.5px;font-weight:700;white-space:nowrap;border-bottom:1px solid rgba(148,163,184,.2)}
+  .cmp-table th.cmp-key{background:#0E7490}
+  .cmp-table td{padding:16px;border-bottom:1px solid var(--line);vertical-align:top;color:#475569;line-height:1.65}
+  .cmp-table tbody tr:last-child td{border-bottom:0}
+  .cmp-table th.cmp-brand-col{position:sticky;left:0;z-index:3;background:var(--navy);box-shadow:1px 0 0 rgba(148,163,184,.25)}
+  .cmp-table td.cmp-brand-col{position:sticky;left:0;z-index:2;background:#fff;box-shadow:1px 0 0 var(--line);min-width:190px}
+  .cmp-table td.cmp-key{background:#F0FDFF}
+  .cmp-table tbody tr:hover td{background:#F8FAFC}
+  .cmp-table tbody tr:hover td.cmp-key{background:#ECFEFF}
+  .cmp-table tbody tr:hover td.cmp-brand-col{background:#F8FAFC}
+  .cmp-brand b{display:block;font-size:13.5px;color:var(--ink);font-weight:800;margin-bottom:6px;line-height:1.4}
+  .cmp-track{display:inline-block;font-size:10.5px;font-weight:700;color:var(--blue-deep);background:#EFF6FF;padding:3px 8px;border-radius:999px;letter-spacing:.02em}
+  .cmp-row.hide{display:none}
+  .cmp-insight{margin-top:18px;background:#EFF6FF;border:1px solid #DBEAFE;border-left:3px solid var(--blue);border-radius:10px;padding:18px 22px;font-size:13.5px;color:var(--ink-2)}
+  .cmp-insight b{color:var(--blue-deep)}
+  .cmp-note{font-size:11.5px;color:var(--muted-dark);margin-top:12px}
+  @media(max-width:960px){
+    .cmp-wrap{border:0;box-shadow:none;overflow:visible;background:transparent}
+    .cmp-table{display:block;min-width:0;font-size:13px}
+    .cmp-table thead{display:none}
+    .cmp-table tbody{display:block}
+    .cmp-table tr.cmp-row{display:grid;background:#fff;border:1px solid var(--line);border-radius:14px;margin-bottom:14px;padding:6px 0 8px;box-shadow:0 6px 24px rgba(15,23,42,.05)}
+    .cmp-table td{display:grid;grid-template-columns:132px 1fr;gap:12px;padding:9px 18px;border:0}
+    .cmp-table td::before{content:attr(data-label);font-size:11.5px;font-weight:700;color:var(--blue-deep);letter-spacing:.02em;line-height:1.7}
+    .cmp-table td.cmp-brand-col{position:static;display:block;min-width:0;padding:14px 18px 10px;box-shadow:none;border-bottom:1px solid var(--line)}
+    .cmp-table td.cmp-brand-col::before{display:none}
+    .cmp-table td.cmp-key{background:transparent}
+    .cmp-table tbody tr:hover td{background:transparent}
+  }
+
+  /* ---------- FAQ PAGE ---------- */
+  .fq-layout{display:grid;grid-template-columns:236px 1fr;gap:30px;align-items:start}
+  .fq-side{position:sticky;top:90px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:0 6px 24px rgba(15,23,42,.04)}
+  .fq-side-title{font-size:11px;letter-spacing:.18em;font-weight:700;color:var(--muted);padding:4px 10px 12px;border-bottom:1px solid var(--line);margin-bottom:10px}
+  .fq-cat{width:100%;display:flex;justify-content:space-between;align-items:center;gap:10px;background:none;border:0;border-radius:8px;padding:9px 10px;font-size:13px;color:var(--ink-2);cursor:pointer;text-align:left;transition:.2s}
+  .fq-cat span{font-size:11px;color:var(--muted);background:var(--bg-gray);border-radius:999px;padding:1px 8px;flex:none}
+  .fq-cat:hover{background:var(--bg-gray);color:var(--blue-deep)}
+  .fq-cat.active{background:var(--navy);color:#fff;font-weight:700}
+  .fq-cat.active span{background:rgba(34,211,238,.16);color:var(--cyan)}
+  .fq-main{min-width:0}
+  .fq-toolbar{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:18px}
+  .fq-search{position:relative;flex:1;min-width:240px;max-width:440px}
+  .fq-search svg{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none}
+  .fq-search input{width:100%;padding:11px 14px 11px 38px;border:1px solid var(--line);border-radius:9px;background:#fff;outline:none;font-size:13.5px;transition:.2s}
+  .fq-search input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(37,99,235,.08)}
+  .fq-count{font-size:12.5px;color:var(--muted);white-space:nowrap}
+  .fq-item{background:#fff;border:1px solid var(--line);border-radius:12px;margin-bottom:12px;overflow:hidden;transition:.2s}
+  .fq-item.open{border-color:#BFDBFE;box-shadow:0 8px 26px rgba(37,99,235,.08)}
+  .fq-item.hide{display:none}
+  .fq-q{width:100%;display:flex;align-items:flex-start;gap:12px;padding:17px 20px;background:none;border:0;cursor:pointer;text-align:left}
+  .fq-no{flex:none;font-size:11px;font-weight:800;color:var(--blue-deep);background:#EFF6FF;border-radius:6px;padding:3px 7px;margin-top:2px;letter-spacing:.02em}
+  .fq-title{flex:1;font-size:14.5px;font-weight:700;color:var(--ink);line-height:1.55}
+  .fq-q i{flex:none;width:22px;height:22px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--blue);font-style:normal;font-size:15px;line-height:1;transition:.25s;margin-top:1px}
+  .fq-item.open .fq-q i{transform:rotate(45deg);background:var(--blue);border-color:var(--blue);color:#fff}
+  .fq-a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .32s ease}
+  .fq-item.open .fq-a{grid-template-rows:1fr}
+  .fq-a-inner{overflow:hidden}
+  .fq-a-body{padding:0 20px 20px 54px}
+  .fq-a-body p{font-size:13.5px;color:var(--muted);margin-bottom:10px}
+  .fq-a-body p:last-child{margin-bottom:0}
+  .fq-a-body p b{color:var(--ink-2)}
+  .fq-empty{display:none;text-align:center;padding:56px 20px;background:#fff;border:1px dashed var(--line);border-radius:14px;color:var(--muted);font-size:14px}
+  .fq-empty.show{display:block}
+  .fq-cta{margin-top:26px;background:radial-gradient(500px 240px at 90% 0%,rgba(34,211,238,.14),transparent 60%),var(--navy);border-radius:14px;padding:26px 30px;color:#fff;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+  .fq-cta b{font-size:16px;display:block;margin-bottom:4px}
+  .fq-cta span{font-size:12.5px;color:var(--muted-dark)}
+  .inline-link{color:var(--blue-deep);font-weight:700;border-bottom:1px solid #BFDBFE}
+  .inline-link:hover{color:var(--blue)}
+  @media(max-width:900px){
+    .fq-layout{grid-template-columns:1fr;gap:20px}
+    .fq-side{position:static;display:flex;gap:8px;overflow-x:auto;padding:12px;scrollbar-width:none}
+    .fq-side::-webkit-scrollbar{display:none}
+    .fq-side-title{display:none}
+    .fq-cat{width:auto;flex:none;white-space:nowrap;padding:8px 14px;border:1px solid var(--line);border-radius:999px}
+    .fq-cat span{display:none}
+  }
+  @media(max-width:640px){
+    .fq-a-body{padding-left:20px}
+    .fq-toolbar{gap:10px}
+    .fq-search{max-width:none}
+  }
+
   /* ---------- FOOTER ---------- */
   footer{background:var(--navy);color:#fff;padding:60px 0 26px;position:relative;overflow:hidden}
   footer::before{content:"";position:absolute;inset:0;background:radial-gradient(700px 300px at 50% 130%,rgba(34,211,238,.12),transparent 65%);pointer-events:none}
@@ -461,6 +552,7 @@
       <a href="#/resources" data-route="resources">行业资源库</a>
       <a href="#/cases" data-route="cases">标杆案例</a>
       <a href="#/about" data-route="about">关于我们</a>
+      <a href="#/faq" data-route="faq">高频问答</a>
       <a href="#/contact" data-route="contact" class="nav-cta">合作咨询</a>
     </nav>
   </div>
@@ -766,7 +858,7 @@
       <div class="reveal center">
         <div class="eyebrow blue">INVESTOR Q&amp;A · 投资人问答</div>
         <h2>关于赛道、产品与商业化的关键问题</h2>
-        <p class="lead">我们整理了投资人最关心的六个问题，帮助你快速理解量垣科技。</p>
+        <p class="lead">我们整理了投资人最关心的六个问题，帮助你快速理解量垣科技。<a class="inline-link" href="#/faq">查看完整高频问答 →</a></p>
       </div>
       <div class="faq reveal">
         <div class="faq-item">
@@ -948,6 +1040,117 @@
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <section class="res" id="compare">
+    <div class="container">
+      <div class="reveal">
+        <div class="eyebrow blue">COMPETITIVE LANDSCAPE · 横向对比</div>
+        <h2>国内工商业储能自适应设计工具品牌横向对比</h2>
+        <p class="lead">从协议自适应、图纸/BOM 输出、收益测算与生态开放性四个关键维度，对比当前主流工具的能力边界。</p>
+      </div>
+      <div class="cmp-toolbar reveal">
+        <div class="cmp-tabs">
+          <button class="cmp-tab active" data-cmp="all">全部品牌</button>
+          <button class="cmp-tab" data-cmp="设备厂自研工具">设备厂自研</button>
+          <button class="cmp-tab" data-cmp="第三方独立设计平台">第三方设计平台</button>
+          <button class="cmp-tab" data-cmp="电气EDA工具">电气 EDA</button>
+          <button class="cmp-tab" data-cmp="电力仿真平台">电力仿真</button>
+        </div>
+        <span class="cmp-count" id="cmpCount">共 8 个品牌</span>
+      </div>
+      <div class="cmp-wrap reveal">
+        <table class="cmp-table">
+          <thead>
+            <tr>
+              <th class="cmp-brand-col">品牌 / 赛道</th>
+              <th>核心适配场景</th>
+              <th class="cmp-key">协议自适应能力</th>
+              <th>图纸 / BOM 自动输出</th>
+              <th>收益测算</th>
+              <th>目标客户</th>
+              <th>短板</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="cmp-row" data-cat="设备厂自研工具">
+              <td class="cmp-brand-col"><b>阳光电源 iSolarDesign</b><span class="cmp-track">设备厂自研工具</span></td>
+              <td data-label="核心适配场景">大型工商业/园区光储项目、自有硬件配套</td>
+              <td class="cmp-key" data-label="协议自适应能力">仅适配阳光自有 PCS/电池，第三方硬件需人工二次调试，无跨品牌自动适配能力</td>
+              <td data-label="图纸/BOM 输出">支持 3D 建模一键输出光储系统图纸、BOM 清单</td>
+              <td data-label="收益测算">支持，可输出详细收益测算报告</td>
+              <td data-label="目标客户">采购阳光全套储能设备的开发商、大型央企 EPC</td>
+              <td data-label="短板">封闭生态，多品牌混合场景无法自适应，软硬调试仍需人工，中小 EPC 跨品牌项目受限</td>
+            </tr>
+            <tr class="cmp-row" data-cat="设备厂自研工具">
+              <td class="cmp-brand-col"><b>安科瑞 Acrel-2000ES</b><span class="cmp-track">设备厂自研工具</span></td>
+              <td data-label="核心适配场景">制造业工厂用户侧储能、峰谷套利场景</td>
+              <td class="cmp-key" data-label="协议自适应能力">仅适配安科瑞自有采集终端，第三方储能设备协议需手动录入配置</td>
+              <td data-label="图纸/BOM 输出">无，仅前端容量测算，无图纸输出能力</td>
+              <td data-label="收益测算">支持，基于负荷曲线计算最优配置</td>
+              <td data-label="目标客户">长三角制造业工厂、中小 EPC</td>
+              <td data-label="短板">仅做前端容量规划，无硬件协议自动生成、无系统拓扑自适应，非全流程设计平台</td>
+            </tr>
+            <tr class="cmp-row" data-cat="设备厂自研工具">
+              <td class="cmp-brand-col"><b>高特储能 EDA 自配置工具</b><span class="cmp-track">设备厂自研工具</span></td>
+              <td data-label="核心适配场景">中小系统集成商储能柜配置、多柜并联场景</td>
+              <td class="cmp-key" data-label="协议自适应能力">可根据接入设备型号生成基础通信协议模板，仅适配主流二线品牌，小众设备兼容性差</td>
+              <td data-label="图纸/BOM 输出">支持，生成基础电气配置图纸</td>
+              <td data-label="收益测算">无，无 AI 智能寻优、方案仿真能力</td>
+              <td data-label="目标客户">中小储能系统集成商</td>
+              <td data-label="短板">功能轻量化，仅基础配置，无 AI 寻优、仿真能力，小众设备协议适配不足</td>
+            </tr>
+            <tr class="cmp-row" data-cat="第三方独立设计平台">
+              <td class="cmp-brand-col"><b>鹧鸪云</b><span class="cmp-track">第三方独立设计平台</span></td>
+              <td data-label="核心适配场景">全行业工商业/户用光储项目、屋顶/厂区地面储能场景</td>
+              <td class="cmp-key" data-label="协议自适应能力">无底层协议自动生成能力，仅做方案设计，硬件搭配后仍需工程师线下调试通信协议</td>
+              <td data-label="图纸/BOM 输出">支持，自动生成 CAD 电气图纸、BOM 清单</td>
+              <td data-label="收益测算">支持，内置全国分时电价政策，自动计算 IRR 收益</td>
+              <td data-label="目标客户">中小 EPC、分布式光储开发商</td>
+              <td data-label="短板">无协议自动生成、软硬免调试核心能力，百 MW 级大型储能仿真精度不足</td>
+            </tr>
+            <tr class="cmp-row" data-cat="第三方独立设计平台">
+              <td class="cmp-brand-col"><b>温州数智新能源 AI 储能诊断工具</b><span class="cmp-track">第三方独立设计平台</span></td>
+              <td data-label="核心适配场景">江浙区域工商业工厂售前负荷诊断、储能配置</td>
+              <td class="cmp-key" data-label="协议自适应能力">无，仅负荷波峰波谷识别，无协议相关功能</td>
+              <td data-label="图纸/BOM 输出">无，仅售前轻量化测算</td>
+              <td data-label="收益测算">支持，基础容量与收益测算</td>
+              <td data-label="目标客户">江浙区域中小 EPC、工厂业主</td>
+              <td data-label="短板">功能单一，仅售前测算，无图纸、协议、系统拓扑生成，属于轻量化辅助工具</td>
+            </tr>
+            <tr class="cmp-row" data-cat="电气EDA工具">
+              <td class="cmp-brand-col"><b>利驰 SuperWORKS IA</b><span class="cmp-track">电气 EDA 工具</span></td>
+              <td data-label="核心适配场景">储能电气一次/二次回路自动化绘图、柜内接线设计</td>
+              <td class="cmp-key" data-label="协议自适应能力">完全不涉及通信协议、硬件自适应匹配</td>
+              <td data-label="图纸/BOM 输出">支持，自动生成接线图、端子报表、电气图纸</td>
+              <td data-label="收益测算">无，无负荷仿真、储能容量优化能力</td>
+              <td data-label="目标客户">储能集成商、电气设计院</td>
+              <td data-label="短板">仅解决电气图纸自动化，无储能方案设计、协议适配、收益测算能力，纯绘图工具</td>
+            </tr>
+            <tr class="cmp-row" data-cat="电力仿真平台">
+              <td class="cmp-brand-col"><b>森木磊石 EasyGo</b><span class="cmp-track">电力仿真平台</span></td>
+              <td data-label="核心适配场景">储能设备研发、实验室 HIL 仿真、电力电子测试</td>
+              <td class="cmp-key" data-label="协议自适应能力">无，仅设备动态仿真，无商用协议适配能力</td>
+              <td data-label="图纸/BOM 输出">无，无工程化方案输出能力</td>
+              <td data-label="收益测算">无，科研级仿真，无商用收益测算功能</td>
+              <td data-label="目标客户">储能设备研发商、高校实验室、电网科研院所</td>
+              <td data-label="短板">重仿真轻商用落地，无面向 EPC 的方案输出、协议自动生成，研发端使用，不适合工程交付</td>
+            </tr>
+            <tr class="cmp-row" data-cat="电力仿真平台">
+              <td class="cmp-brand-col"><b>中仿智能 HIL-Simulink</b><span class="cmp-track">电力仿真平台</span></td>
+              <td data-label="核心适配场景">大型电网侧储能项目、电力系统数字孪生仿真</td>
+              <td class="cmp-key" data-label="协议自适应能力">无，无工程化协议适配能力</td>
+              <td data-label="图纸/BOM 输出">无，无工程化方案输出能力</td>
+              <td data-label="收益测算">无，科研级仿真，无商用收益测算功能</td>
+              <td data-label="目标客户">电网公司、大型电力设计院、科研院所</td>
+              <td data-label="短板">操作门槛极高，需专业电力仿真工程师，无轻量化工商业自适应配置功能</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="cmp-insight reveal"><b>能力空白即机会：</b>上述工具或绑定自有硬件，或只覆盖单一环节；同时具备「中立生态 + 跨品牌协议自适应 + 全链路工程成果输出」能力的平台仍然稀缺，这正是 Open-ESS-Agent 的切入点。</div>
+      <p class="cmp-note reveal">资料整理截止 2026 年 10 月，仅供行业交流参考；能力描述以各品牌公开信息与实际交付场景为准。</p>
     </div>
   </section>
 </section>
@@ -1291,6 +1494,256 @@
   </section>
 </section>
 
+<section class="page" id="page-faq">
+  <div class="page-hero">
+    <div class="container">
+      <div class="eyebrow cyan">FAQ · 高频问答</div>
+      <h1>关于储能工程 AI 的<em>30 个高频问题</em></h1>
+      <p>覆盖赛道与市场、技术与产品、壁垒与护城河、竞争格局、商业化、财务合规、团队执行与长期规划。</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="container">
+      <div class="fq-layout">
+        <aside class="fq-side reveal">
+          <div class="fq-side-title">问答分类</div>
+          <button class="fq-cat active" data-fcat="all">全部问题 <span>30</span></button>
+          <button class="fq-cat" data-fcat="赛道与市场">赛道与市场 <span>3</span></button>
+          <button class="fq-cat" data-fcat="技术与产品">技术与产品 <span>5</span></button>
+          <button class="fq-cat" data-fcat="壁垒与护城河">壁垒与护城河 <span>3</span></button>
+          <button class="fq-cat" data-fcat="竞争格局">竞争格局 <span>3</span></button>
+          <button class="fq-cat" data-fcat="商业化与客户">商业化与客户 <span>4</span></button>
+          <button class="fq-cat" data-fcat="财务、估值与融资">财务、估值与融资 <span>4</span></button>
+          <button class="fq-cat" data-fcat="合规、责任与风险">合规、责任与风险 <span>3</span></button>
+          <button class="fq-cat" data-fcat="团队与执行">团队与执行 <span>2</span></button>
+          <button class="fq-cat" data-fcat="退出与长期规划">退出与长期规划 <span>3</span></button>
+        </aside>
+        <div class="fq-main">
+          <div class="fq-toolbar reveal">
+            <div class="fq-search">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+              <input type="text" id="faqSearch" placeholder="搜索关键词，如：协议、幻觉、数据合规" aria-label="搜索问题">
+            </div>
+            <span class="fq-count" id="faqCount">共 30 个问题</span>
+          </div>
+          <div class="fq-list reveal">
+            <div class="fq-item open" data-fcat="赛道与市场">
+              <button class="fq-q"><span class="fq-no">Q1</span><span class="fq-title">现在工业垂直大模型项目非常多，为什么单独选择储能工程这个赛道？</span><i>+</i></button>
+              <div class="fq-a"><div class="fq-a-inner"><div class="fq-a-body">
+                <p>储能属于强物理约束、强监管规范、高客单价、专业人才稀缺的工业赛道，和普通文案类垂类大模型有本质区别。储能项目单项目投资动辄千万甚至数亿元，EPC、设计院、业主对方案准确率、并网合规性要求极高，错误方案会直接造成丢标、并网返工、资产损失，客户愿意为可量化提效、降本、增收的工具支付费用。</p>
+                <p>同时行业正处于高速扩容周期，独立储能、工商业光储、源网荷储持续落地，各省电力现货、辅助服务机制不断完善，前期设计、后期调度优化需求持续增长，需求不是短期热点，是长期刚性需求。</p>
+                <p>我们不是追大模型热点，是解决储能行业真实工程痛点。</p>
+              </div></div></div>
+            </div>
+            <div class="fq-item" data-fcat="赛道与市场">
+              <button class="fq-q"><span class="fq-no">Q2</span><span class="fq-title">这个市场天花板到底有多大？TAM/SAM/SOM 怎么理解？</span><i>+</i></button>
+              <div class="fq-a"><div class="fq-a-inner"><div class="fq-a-body">
+                <p><b>TAM</b> 是国内全部储能数字化、工程设计、智能调度相关市场，包含 EPC 投标设计服务、设计院储能专项业务、电站智能运维、电力交易优化、虚拟电厂调度整体市场。</p>
+                <p><b>SAM</b> 是我们可直接触达客户：国内储能 EPC 集成商、新能源设计院、独立储能投资业主、PCS/BMS/EMS 设备厂商、虚拟电厂运营商。</p>
+                <p><b>SOM</b> 是我们前 3 年可以实际拿下的份额，也就是 BP 财务预测对应的营收规模。中长期还可以拓展海外储能市场，打开第二增长空间。</p>
+              </div></div></div>
+            </div>
+            <div class="fq-item" data-fcat="赛道与市场">
+              <button class="fq-q"><span class="fq-no">Q3</span><span class="fq-title">如果未来储能行业增速放缓，这个项目是不是就没有增长了？</span><i>+</i></button>
+              <div class="fq-a"><div class="fq-a-inner"><div class="fq-a-body">
+                <p>储能行业即使新增装机增速回落，存量电站的运维、SOH 评估、现货套利、辅助服务、技改优化需求依然长期存在。我们产品是覆盖新建工程 + 存量资产运营全生命周期，不是只依赖新增投标市场，存量电站运营优化业务（尤其收益分成）是长期稳定的第二曲线，抗行业周期能力优于只做新建业务的公司。</p>
+              </div></div></div>
+            </div>
+            <div class="fq-item" data-fcat="技术与产品">
+              <button class="fq-q"><span class="fq-no">Q4</span><span class="fq-title">你们本质是不是通用大模型套壳？</span><i>+</i></button>
+              <div class="fq-a"><div class="fq-a-inner"><div class="fq-a-body">
+                <p>不是套壳。通用基座大模型只作为文本理解与生成底座，核心增量是我们自研的三层能力：</p>
+                <p>1）储能领域 SFT 微调 + 领域偏好对齐；</p>
+                <p>2）结构化储能知识库（国标、各省并网导则、设备协议、历史工程案例、电力市场规则）；</p>
+                <p>3）物理机理仿真引擎 + 硬规则校验引擎，也就是电化学模型、电力潮流、热管理、收益测算模型，所有 AI 生成内容必须经过物理计算与规范校验，输出带风险告警和置信度。普通套壳 LLM 只生成文本，我们输出的是经过工程校验、可用于投标报审的工程成果，这是本质差异。</p>
+              </div></div></div>
+            </div>
+            <div class="fq-item" data-fcat="技术与产品">
+              <button class="fq-q"><span class="fq-no">Q5</span><span class="fq-title">大模型幻觉问题怎么解决？电力工程一旦出错责任很大，你们有什么机制？</span><i>+</i></button>
+              <div class="fq-a"><div class="fq-a-inner"><div class="fq-a-body">
+                <p>我们采用生成 + 校验分离架构，大模型负责生成初稿，独立规则引擎和机理模型做二次校核，参数越限、规范冲突会自动标红预警；产品定位是工程师辅助智能体，不是自动出图、自动签字的最终设计主体，所有正式工程文件必须由持证工程师人工复核确认。</p>
+                <p>同时我们后续会配套工程相关责任险，并且在客户合同里明确权责边界，平台仅提供辅助建议，最终工程责任由设计单位/EPC 承担。</p>
+              </div></div></div>
+            </div>
+            <div class="fq-item" data-fcat="技术与产品">
+              <button class="fq-q"><span class="fq-no">Q6</span><span class="fq-title">为什么一定要做物理机理引擎？直接用 RAG 知识库不行吗？</span><i>+</i></button>
+              <div class="fq-a"><div class="fq-a-inner"><div class="fq-a-body">
+                <p>单纯 RAG 只能检索文档，回答文字类问题，但是储能工程需要计算：潮流计算、容量配置优化、IRR 敏感性、电芯衰减、热失控仿真，这些是定量物理计算，不是文本检索可以完成的。</p>
+                <p>RAG 解决「知道规范是什么」，机理引擎解决「参数是否合理、方案物理上是否可行」，二者结合才是工程级可信输出，只做 RAG 依然无法满足工程交付要求。</p>
+              </div></div></div>
+            </div>
+            <div class="fq-item" data-fcat="技术与产品">
+              <button class="fq-q"><span class="fq-no">Q7</span><span class="fq-title">产品 MVP 为什么优先选择 EPC 投标方案生成，而不是直接做电站 AI-EMS 现货调度？</span><i>+</i></button>
+              <div class="fq-a"><div class="fq-a-inner"><div class="fq-a-body">
+                <p>优先级是按照客户付费意愿、落地难度、合规风险排序：</p>
+                <p>EPC 投标设计属于前期办公场景，不直接控制电站设备、不直接参与电力交易，合规风险低，客户痛点强、决策周期短，最快验证 ROI，适合作为切入场景；</p>
+                <p>而 AI-EMS 现货调度涉及电力交易监管、电站闭环控制，合规门槛高、客户决策链条长，需要等前期产品验证、客户信任建立之后再拓展，避免一开始就踩监管红线。</p>
+              </div></div></div>
+            </div>
+            <div class="fq-item" data-fcat="技术与产品">
+              <button class="fq-q"><span class="fq-no">Q8</span><span class="fq-title">后续能不能支持多模态？比如识别图纸、BOM 表格、现场调试报文？</span><i>+</i></button>
+              <div class="fq-a"><div class="fq-a-inner"><div class="fq-a-body">
+                <p>产品路线已经预留多模态扩展能力，二期会支持图纸识别、报文解析、BOM 表格结构化提取，用于现场联调故障诊断场景，这也是二期产品重要升级方向。</p>
+              </div></div></div>
+            </div>
+            <div class="fq-item" data-fcat="壁垒与护城河">
+              <button class="fq-q"><span class="fq-no">Q9</span><span class="fq-title">你们最大的护城河是什么？如果大厂或者头部 EPC 自己做，你们怎么办？</span><i>+</i></button>
+              <div class="fq-a"><div class="fq-a-inner"><div class="fq-a-body">
+                <p>核心护城河是脱敏工程案例 + 设备私有协议 + 碎片化地方并网规范构成的行业数据飞轮。</p>
+                <p>大厂通用 AI 团队懂大模型，但缺少储能一线工程交付经验，很难拿到大量真实投标、并网审查、现场联调的脱敏案例；头部 EPC 虽然有工程数据，但是内部自研系统一般只服务自己公司，不愿意对外开放，也很难做到中立兼容全品牌硬件。</p>
+                <p>我们定位中立第三方，持续通过标杆项目回流数据，模型越用越精准，这个数据积累需要时间，是时间壁垒，不是短期可以复制。</p>
+              </div></div></div>
+            </div>
+            <div class="fq-item" data-fcat="壁垒与护城河">
+              <button class="fq-q"><span class="fq-no">Q10</span><span class="fq-title">中立第三方这个定位优势是什么？会不会反而被硬件厂商挤压？</span><i>+</i></button>
+              <div class="fq-a"><div class="fq-a-inner"><div class="fq-a-body">
+                <p>优势就是 EPC、设计院客户不用担心我们是某一家电池/PCS 厂商，不会担心平台偏向自家硬件，选型保持中立，客户信任度更高。</p>
+                <p>硬件厂商自研 EMS 是封闭生态，只能适配自家设备，跨品牌项目天然受限。我们兼容全品牌，这个中立属性是我们相对硬件厂商自研系统的核心差异化。</p>
+              </div></div></div>
+            </div>
+            <div class="fq-item" data-fcat="壁垒与护城河">
+              <button class="fq-q"><span class="fq-no">Q11</span><span class="fq-title">知识库更新成本高吗？各省并网导则一直在变，会不会持续烧钱？</span><i>+</i></button>
+              <div class="fq-a"><div class="fq-a-inner"><div class="fq-a-body">
+                <p>知识库采用模块化架构，按省份、规范类型拆分，不需要全库重训模型，只需要增量更新文档与规则校验条目，设置专职运维团队做增量维护，属于常态化运营成本，不会带来高额重训算力成本，财务测算里面已经把这部分运维成本计入。</p>
+              </div></div></div>
+            </div>
+            <div class="fq-item" data-fcat="竞争格局">
+              <button class="fq-q"><span class="fq-no">Q12</span><span class="fq-title">市面上已经有电力 AI、新能源 AI 公司，你们和他们差别在哪里？</span><i>+</i></button>
+              <div class="fq-a"><div class="fq-a-inner"><div class="fq-a-body">
+                <p>很多新能源 AI 公司主要聚焦光伏、风电场区监控、数字孪生，重心在电站运行监控，很少深度覆盖储能投标设计、并网报审、BOM、可研设计这个前端工程场景，也没有专门针对储能电化学 + 并网导则的垂类校验引擎。我们是聚焦储能工程全生命周期，首发切投标设计这个细分刚需场景，赛道聚焦度更高。</p>
+              </div></div></div>
+            </div>
+            <div class="fq-item" data-fcat="竞争格局">
+              <button class="fq-q"><span class="fq-no">Q13</span><span class="fq-title">传统 CAD、电力仿真软件厂商如果加上大模型功能，会不会直接把你们替代？</span><i>+</i></button>
+              <div class="fq-a"><div class="fq-a-inner"><div class="fq-a-body">
+                <p>传统软件厂商优势是成熟计算内核，但是短板是产品思维是专业计算工具，交互逻辑老旧，缺少 Agent 智能生成、自然语言交互、成套投标文档自动生成能力，并且组织惯性大，大模型产品化转型速度偏慢。</p>
+                <p>我们是原生 Agent 架构，优先解决方案自动生成、多文档成套输出，同时可以和传统仿真软件做对接集成，不是完全替代传统软件，是上层智能应用层，未来甚至可以和传统仿真厂商生态合作。</p>
+              </div></div></div>
+            </div>
+            <div class="fq-item" data-fcat="竞争格局">
+              <button class="fq-q"><span class="fq-no">Q14</span><span class="fq-title">如果头部 EPC 内部自研 AI 投标系统，不再采购你们 SaaS 怎么办？</span><i>+</i></button>
+              <div class="fq-a"><div class="fq-a-inner"><div class="fq-a-body">
+                <p>首先，国内中小 EPC 数量非常多，大部分中小 EPC 没有能力自研大模型团队，是我们核心客户基本盘；其次，大型 EPC 即使内部自研，很多复杂跨省份项目依然会需要中立第三方工具做交叉校核，并且私有化部署业务本身就是面向这类大型客户，我们可以作为外部辅助校验平台。</p>
+              </div></div></div>
+            </div>
+            <div class="fq-item" data-fcat="商业化与客户">
+              <button class="fq-q"><span class="fq-no">Q15</span><span class="fq-title">客户为什么愿意付费？怎么证明客户不是试用之后就不续费？</span><i>+</i></button>
+              <div class="fq-a"><div class="fq-a-inner"><div class="fq-a-body">
+                <p>我们所有价值都绑定量化 ROI：投标方案制作周期从 7~15 天压缩到小时级，工程师工时下降 60% 以上，减少并网审查返工，间接提升中标率。</p>
+                <p>POC 阶段我们就会输出对比测算报告，让客户直观看到人力节省金额。SaaS 是按年订阅，只要持续产生提效价值，复购逻辑成立。POC 阶段我们会优先筛选已经有稳定投标业务、每年投标项目数量多的 EPC，这类客户 ROI 最明显，续费意愿最强。</p>
+              </div></div></div>
+            </div>
+            <div class="fq-item" data-fcat="商业化与客户">
+              <button class="fq-q"><span class="fq-no">Q16</span><span class="fq-title">收益分成这个模式听起来很好，但是落地难度大，你们怎么保证可以落地？</span><i>+</i></button>
+              <div class="fq-a"><div class="fq-a-inner"><div class="fq-a-body">
+                <p>收益分成属于二期高阶业务，不是第一年就主推。前期先通过 SaaS、私有化部署建立客户信任，等到客户认可调度优化能力之后，再和业主签订增量收益分成协议。</p>
+                <p>关键风控：现阶段严格采用人机协同，AI 输出现货申报策略，人工审核后执行，不做全自动闭环交易，符合当前电力监管要求。增量收益需要约定基准收益，清晰界定「AI 优化带来的增量」，合同提前约定核算口径，避免后续收益认定纠纷。</p>
+              </div></div></div>
+            </div>
+            <div class="fq-item" data-fcat="商业化与客户">
+              <button class="fq-q"><span class="fq-no">Q17</span><span class="fq-title">获客成本高吗？储能行业客户是不是决策周期很长？</span><i>+</i></button>
+              <div class="fq-a"><div class="fq-a-inner"><div class="fq-a-body">
+                <p>储能行业属于产业 B 端，决策周期确实比普通 SaaS 长，一般 POC 周期 1~3 个月。但是客户一旦认可，客单价高，并且复购、转介绍属性强，行业圈子相对集中，标杆案例可以在 EPC 圈子快速传播，后续获客成本会随着标杆案例积累逐步下降。销售团队核心是产业渠道、行业展会、设计院/EPC 协会资源，不是纯线上投放。</p>
+              </div></div></div>
+            </div>
+            <div class="fq-item" data-fcat="商业化与客户">
+              <button class="fq-q"><span class="fq-no">Q18</span><span class="fq-title">私有化部署订单会不会项目制很重，拉低整体毛利率？</span><i>+</i></button>
+              <div class="fq-a"><div class="fq-a-inner"><div class="fq-a-body">
+                <p>私有化部署毛利率确实低于纯 SaaS，BP 测算里面已经区分毛利率：SaaS/SDK 75%，私有化部署 55%，项目实施 45%。我们策略是控制私有化项目数量，作为高客单价补充业务，营收主力仍然是标准化 SaaS 订阅，保证公司整体综合毛利率维持在 65% 以上，不会变成纯项目外包公司。</p>
+              </div></div></div>
+            </div>
+            <div class="fq-item" data-fcat="财务、估值与融资">
+              <button class="fq-q"><span class="fq-no">Q19</span><span class="fq-title">BP 里面三年财务预测，客户数量假设是不是偏乐观？</span><i>+</i></button>
+              <div class="fq-a"><div class="fq-a-inner"><div class="fq-a-body">
+                <p>该版本是中性测算，我们同时准备保守版本，客户数量下调 30%，第三年依然可以实现盈利。第一年核心目标不是大规模营收，而是标杆客户验证，客户数量假设是基于每年新增付费 EPC、设计院数量，结合行业展会、渠道转化做的保守估算，不是激进预测。</p>
+              </div></div></div>
+            </div>
+            <div class="fq-item" data-fcat="财务、估值与融资">
+              <button class="fq-q"><span class="fq-no">Q20</span><span class="fq-title">为什么第一年是亏损的？天使轮资金能不能支撑到盈亏平衡？</span><i>+</i></button>
+              <div class="fq-a"><div class="fq-a-inner"><div class="fq-a-body">
+                <p>第一年属于产品研发 + 知识库建设 + POC 试点投入期，研发、算力、知识库标注、销售拓展投入大，营收还处于起步阶段，所以出现亏损，属于工业垂类 AI 项目正常投入周期。本轮天使轮资金核心目标是支撑到 MVP 落地、标杆客户付费验证，为 A 轮规模化扩张储备数据与案例，不需要天使轮资金直接撑到全面盈利。</p>
+              </div></div></div>
+            </div>
+            <div class="fq-item" data-fcat="财务、估值与融资">
+              <button class="fq-q"><span class="fq-no">Q21</span><span class="fq-title">本轮估值是怎么考虑的？A 轮计划什么时候启动？</span><i>+</i></button>
+              <div class="fq-a"><div class="fq-a-inner"><div class="fq-a-body">
+                <p>天使轮估值主要参考：赛道空间、团队复合背景、MVP 技术方案、标杆客户意向 LOI、同类工业垂类 AI 天使轮可比估值。</p>
+                <p>计划在本轮资金使用 12~18 个月，完成付费标杆客户、SaaS 产品上线，拿到稳定复购数据之后启动 A 轮融资，A 轮核心用于扩大销售团队、扩充知识库、拓展业主和设备厂商客户、推进收益分成业务落地。</p>
+              </div></div></div>
+            </div>
+            <div class="fq-item" data-fcat="财务、估值与融资">
+              <button class="fq-q"><span class="fq-no">Q22</span><span class="fq-title">算力成本会不会持续上涨，侵蚀利润？</span><i>+</i></button>
+              <div class="fq-a"><div class="fq-a-inner"><div class="fq-a-body">
+                <p>我们不是每次都全量调用大模型，大量规范校验、物理计算是本地机理引擎与规则引擎，只有方案生成环节调用大模型，并且后续可以做模型蒸馏、量化，降低推理算力成本，长期单位调用成本是下降的，财务测算已经考虑算力成本的优化空间。</p>
+              </div></div></div>
+            </div>
+            <div class="fq-item" data-fcat="合规、责任与风险">
+              <button class="fq-q"><span class="fq-no">Q23</span><span class="fq-title">电力现货交易监管政策未来如果收紧，收益分成业务是不是就做不了？</span><i>+</i></button>
+              <div class="fq-a"><div class="fq-a-inner"><div class="fq-a-body">
+                <p>我们业务底盘是 SaaS 投标设计、私有化部署，这个业务不受电力交易政策收紧影响，收益分成只是增量溢价业务，属于可选第二曲线。即使该业务因为监管原因放缓，公司主营业务依然可以独立盈利，不会因为单一政策变化造成公司经营崩盘。</p>
+              </div></div></div>
+            </div>
+            <div class="fq-item" data-fcat="合规、责任与风险">
+              <button class="fq-q"><span class="fq-no">Q24</span><span class="fq-title">客户工程数据属于商业机密，数据合规怎么处理？</span><i>+</i></button>
+              <div class="fq-a"><div class="fq-a-inner"><div class="fq-a-body">
+                <p>公有云 SaaS 版本，客户上传工程数据做脱敏处理；对于央企、大型业主等高保密客户，主推私有化内网部署，所有数据保存在客户本地，模型微调也在客户内网完成，平台厂商不获取原始项目数据，解决数据保密顾虑。</p>
+              </div></div></div>
+            </div>
+            <div class="fq-item" data-fcat="合规、责任与风险">
+              <button class="fq-q"><span class="fq-no">Q25</span><span class="fq-title">如果因为模型输出错误，客户并网失败、投标损失，产生法律纠纷怎么办？</span><i>+</i></button>
+              <div class="fq-a"><div class="fq-a-inner"><div class="fq-a-body">
+                <p>合同层面明确产品为辅助工具，最终决策、设计签字责任归属客户方持证工程师；技术层面输出置信度、风险告警；商业层面购买工程相关责任险，分散潜在赔付风险。</p>
+              </div></div></div>
+            </div>
+            <div class="fq-item" data-fcat="团队与执行">
+              <button class="fq-q"><span class="fq-no">Q26</span><span class="fq-title">团队是不是偏销售产业背景，算法能力够吗？</span><i>+</i></button>
+              <div class="fq-a"><div class="fq-a-inner"><div class="fq-a-body">
+                <p>团队核心策略是产业 + 算法复合配置，产业端熟悉储能 EPC、电力工程真实业务痛点，知道客户到底需要什么，避免算法团队闭门造车。算法负责人独立配置，负责大模型微调、Agent、机理融合开发。工业垂类 AI 最大失败原因往往不是算法不够强，而是不懂行业业务，产品做出来客户不用，我们团队结构正是解决这个问题。</p>
+              </div></div></div>
+            </div>
+            <div class="fq-item" data-fcat="团队与执行">
+              <button class="fq-q"><span class="fq-no">Q27</span><span class="fq-title">后续招聘重点是什么？</span><i>+</i></button>
+              <div class="fq-a"><div class="fq-a-inner"><div class="fq-a-body">
+                <p>下一阶段重点招聘：储能电力系统专家、电化学工程师、大模型算法工程师、B 端产业销售、知识库运维专员。优先招聘有储能设计院/EPC 一线经验的人才，持续强化行业认知。</p>
+              </div></div></div>
+            </div>
+            <div class="fq-item" data-fcat="退出与长期规划">
+              <button class="fq-q"><span class="fq-no">Q28</span><span class="fq-title">未来退出路径是什么？</span><i>+</i></button>
+              <div class="fq-a"><div class="fq-a-inner"><div class="fq-a-body">
+                <p>中长期有三类退出路径：</p>
+                <p>1）独立 IPO：产品规模化，覆盖国内储能全生命周期，营收利润稳定；</p>
+                <p>2）产业并购：被头部储能 EPC、电力软件厂商、电力集团数字化平台并购；</p>
+                <p>3）战略收购：大型电力设备集团、虚拟电厂运营商收购，补充其 AI 智能化能力。</p>
+              </div></div></div>
+            </div>
+            <div class="fq-item" data-fcat="退出与长期规划">
+              <button class="fq-q"><span class="fq-no">Q29</span><span class="fq-title">海外市场什么时候启动？海外的并网标准、电力市场规则差异很大，难度是不是很高？</span><i>+</i></button>
+              <div class="fq-a"><div class="fq-a-inner"><div class="fq-a-body">
+                <p>海外业务放在第三阶段之后，国内业务验证成熟之后再启动。先做国内知识库和产品架构，架构本身支持多标准模块化扩展，后续单独增加海外并网导则、电力市场规则模块，不需要推翻原有底层架构，降低二次开发难度。优先选择中东、东南亚储能项目市场，再逐步拓展欧美。</p>
+              </div></div></div>
+            </div>
+            <div class="fq-item" data-fcat="退出与长期规划">
+              <button class="fq-q"><span class="fq-no">Q30</span><span class="fq-title">你们长期愿景是做工具，还是想做成储能行业 AI 平台？</span><i>+</i></button>
+              <div class="fq-a"><div class="fq-a-inner"><div class="fq-a-body">
+                <p>短期是高价值工程智能工具，验证商业化；中长期目标是储能行业中立 AI 基础设施，覆盖设计、调试、运维、集群调度，接入虚拟电厂生态，成为储能产业链的标准化智能底座。</p>
+              </div></div></div>
+            </div>
+            <div class="fq-empty" id="faqEmpty">没有找到相关问题，试试其他关键词或分类。</div>
+          </div>
+          <div class="fq-cta reveal">
+            <div>
+              <b>没有找到你关心的问题？</b>
+              <span>留下联系方式，我们的团队会为你详细解答。</span>
+            </div>
+            <a class="btn btn-primary" href="#/contact">联系我们</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
+
 <section class="page" id="page-contact">
   <div class="page-hero">
     <div class="container">
@@ -1405,6 +1858,7 @@
         <h4>了解更多</h4>
         <a href="#/cases">标杆案例</a>
         <a href="#/about">关于我们</a>
+        <a href="#/faq">高频问答</a>
         <a href="#/contact">合作咨询</a>
         <a href="mailto:bd@essagent.cn">bd@essagent.cn</a>
       </div>
@@ -1428,9 +1882,9 @@
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 14 7-7 7 7"/></svg>
 </button>
 
-<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"></script>
+<script src="echarts.min.js"></script>
 <script>
-  const routes = ['home','product','solutions','resources','cases','about','contact'];
+  const routes = ['home','product','solutions','resources','cases','about','faq','contact'];
   const titles = {
     home:'量垣科技 · Open-ESS-Agent | 储能前端工程交付数字化',
     product:'产品平台 · Open-ESS-Agent | 量垣科技',
@@ -1438,6 +1892,7 @@
     resources:'行业资源库 · Open-ESS-Agent | 量垣科技',
     cases:'标杆案例 · Open-ESS-Agent | 量垣科技',
     about:'关于我们 · 上海量垣科技有限公司',
+    faq:'高频问答 · Open-ESS-Agent | 量垣科技',
     contact:'合作咨询 · 上海量垣科技有限公司'
   };
 
@@ -1685,6 +2140,70 @@
       a.remove();
       setTimeout(() => URL.revokeObjectURL(url), 1000);
     });
+  });
+
+  const cmpTabs = document.querySelectorAll('.cmp-tab');
+  const cmpRows = [...document.querySelectorAll('.cmp-row')];
+  const cmpCount = document.getElementById('cmpCount');
+
+  cmpTabs.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const cat = btn.dataset.cmp;
+      cmpTabs.forEach(b => b.classList.toggle('active', b === btn));
+      let visible = 0;
+      cmpRows.forEach(row => {
+        const show = cat === 'all' || row.dataset.cat === cat;
+        row.classList.toggle('hide', !show);
+        if (show) visible++;
+      });
+      if (cmpCount) cmpCount.textContent = '共 ' + visible + ' 个品牌';
+    });
+  });
+
+  const fqItems = [...document.querySelectorAll('.fq-item')];
+  const fqCats = document.querySelectorAll('.fq-cat');
+  const fqSearch = document.getElementById('faqSearch');
+  const fqCount = document.getElementById('faqCount');
+  const fqEmpty = document.getElementById('faqEmpty');
+  let fqCat = 'all';
+
+  function applyFaqFilter(){
+    const kw = fqSearch ? fqSearch.value.trim().toLowerCase() : '';
+    let visible = 0;
+    fqItems.forEach(item => {
+      const okCat = fqCat === 'all' || item.dataset.fcat === fqCat;
+      const okKw = !kw || item.textContent.toLowerCase().includes(kw);
+      const show = okCat && okKw;
+      item.classList.toggle('hide', !show);
+      if (!show) item.classList.remove('open');
+      if (show) visible++;
+    });
+    if (fqCount) fqCount.textContent = (kw ? '找到 ' : '显示 ') + visible + ' / ' + fqItems.length + ' 个问题';
+    if (fqEmpty) fqEmpty.classList.toggle('show', visible === 0);
+  }
+
+  fqCats.forEach(btn => {
+    btn.addEventListener('click', () => {
+      fqCat = btn.dataset.fcat;
+      fqCats.forEach(b => b.classList.toggle('active', b === btn));
+      applyFaqFilter();
+    });
+  });
+
+  if (fqSearch){
+    fqSearch.addEventListener('input', () => {
+      if (fqSearch.value.trim() && fqCat !== 'all'){
+        fqCat = 'all';
+        fqCats.forEach(b => b.classList.toggle('active', b.dataset.fcat === 'all'));
+      }
+      applyFaqFilter();
+    });
+  }
+
+  fqItems.forEach(item => {
+    const q = item.querySelector('.fq-q');
+    if (!q) return;
+    q.addEventListener('click', () => item.classList.toggle('open'));
   });
 
   document.querySelectorAll('.faq-q').forEach(q => {
