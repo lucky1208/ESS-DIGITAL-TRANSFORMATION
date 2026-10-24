@@ -2286,7 +2286,7 @@
     contactSubmit.textContent = '正在提交...';
 
     try {
-      const res = await fetch('https://formsubmit.co/ajax/luly101@163.com', {
+      const res = await fetch('https://formsubmit.co/ajax/lucius.lu@hotmail.com', {
         method: 'POST',
         headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
         body: JSON.stringify({
@@ -2308,7 +2308,7 @@
     } catch (err) {
       const mailSubject = '官网合作咨询 · ' + company + ' · ' + name;
       const mailBody = '姓名：' + name + '\n公司：' + company + '\n手机：' + phone + '\n咨询类型：' + type + '\n需求描述：' + demand;
-      const mailto = 'mailto:luly101@163.com?subject=' + encodeURIComponent(mailSubject) + '&body=' + encodeURIComponent(mailBody);
+      const mailto = 'mailto:lucius.lu@hotmail.com?subject=' + encodeURIComponent(mailSubject) + '&body=' + encodeURIComponent(mailBody);
       formStatus.innerHTML = '提交失败，请稍后重试，或 <a href="' + mailto + '">点击直接发送邮件</a>（已自动带上填写内容）。';
       formStatus.className = 'form-status show';
     } finally {
